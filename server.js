@@ -12,8 +12,9 @@ app.get('/api/weather', async (req, res) => {
     try {
         //Check if current date is prime or not
         const day = moment().format('D')
-        const dateInNumber = 13;
+        const dateInNumber = Number(day);
         let isPrimeDate = true;
+        if (dateInNumber === 1) return res.status(400).json({ msg: "Date is not prime so you can't request the data" })
         for (let i = 2; i < dateInNumber; i++) {
             if (dateInNumber % i == 0) {
                 isPrimeDate = false;
@@ -24,8 +25,8 @@ app.get('/api/weather', async (req, res) => {
         if (isPrimeDate) {
             //Get data from open weather API
             const data = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&&appid=${process.env.WEATHER_API_KEY}`)
-            const {coord,id} = data.data;
-            await weatherModel.create({cord:coord,id});
+            const { coord, id } = data.data;
+            await weatherModel.create({ cord: coord, id });
             return res.status(200).json({ msg: "Weather details fetched successfully", weatherData: data.data })
         } else {
             return res.status(400).json({ msg: "Date is not prime so you can't request the data" })
