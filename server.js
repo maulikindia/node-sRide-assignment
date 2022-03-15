@@ -7,6 +7,11 @@ require('dotenv').config()
 require('./config/db')
 const weatherModel = require('./models/weather')
 
+/*
+    Assumptions:- 1.Current date is considers as day only
+                  2.On based on the day we are checking if it is prime or not
+                  3.We can also further check if current month(for ex:- march (3) is prime or non-prime number)
+*/
 //Get API to return response from the weather API based on date is prime or not
 app.get('/api/weather', async (req, res) => {
     try {

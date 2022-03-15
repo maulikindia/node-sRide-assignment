@@ -14,3 +14,8 @@
 # Sample env file
 WEATHER_API_KEY=465177692314209b0c4abfd73677582e
 MONGODB_URL=mongodb://localhost:27017/sRide-weather-db
+
+
+# pre-requisites(task-2)
+1.Node should be installed on system
+2.Run "task2.js" file by command "node task2.js"
